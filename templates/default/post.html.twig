@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+
+<article>
+        <h2>{{articleSolo.title}}</h2>
+        <div class="metadata">Ecrit le {{articleSolo.createdAt | date('d/m/Y') }} à {{ articleSolo.createdAt |  date('H:i') }} dans a categorie : 5 etapes</div>
+        <div class="content">
+            <img src="{{ articleSolo.image }}" alt="">
+            {{ articleSolo.content | raw }}
+            
+        </div>
+    </article>
+
+
+{% endblock %}
