@@ -2,13 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Post;
+
+//use DateTimeImmutable;
+//use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\PostType;
+//use Doctrine\Persistence\ObjectManager;
+use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
-
-use App\Entity\Post;
-use App\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
@@ -38,19 +44,35 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/post/new", name="post_new")
+     * @Route("/post/{id}/edit", name="post_edit")
      */
-    public function newPost(Request $request): Response
+    public function form(Post $post = null, Request $request, EntityManagerInterface $manager): Response
     {
-        $post = new Post();
+        if(!$post){
+            $post = new Post();
+        }
+       
+        $form = $this->createForm(PostType::class, $post);
+            
 
-        $form = $this->createFormBuilder($post)
-            ->add('title')
-            ->add('content')
-            ->add('image')
-            ->getForm();
+        $form->handleRequest($request);
+
+        //dump($post);
+        if($form->isSubmitted() && $form->isValid()){
+            if(!$post->getId()) {
+                $post->setCreatedAt(new \DateTimeImmutable());
+            }
+            
+ 
+            $manager->persist($post);
+            $manager->flush();
+
+            return $this->redirectToRoute('post',['id' =>$post->getId()]);
+        }
 
         return $this->render('default/new.html.twig',[
-            'formPost' =>$form->createView()
+            'formPost' =>$form->createView(),
+            'editMode' => $post->getId() !==null
         ]);
     }
 
@@ -68,3 +90,6 @@ class DefaultController extends AbstractController
 
    
 }
+
+// https://stackoverflow.com/questions/59240233/symfony-4-cannot-autowire-argument-manager-of-it-references-interface-do
+//SOLUTION POUR OBJECTMANAGER

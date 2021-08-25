@@ -10,12 +10,18 @@
     {% for article in articles %}
         <article>
             <h2>{{ article.title }}</h2>
-            <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt |  date('H:i') }} dans a categorie : 5 etapes</div>
-            <div class="content">
-                <img src="{{ article.image }}" alt="">
-                {{ article.content | raw }}
-                <a href="{{ path('post', {'id': article.id}) }}" class="btn btn-primary">read more</a>
+            <div class="metadata">
+                <p>Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt |  date('H:i') }} dans a categorie : 5 etapes</p>
             </div>
+            <div class="content">
+                <span><img src="{{ article.image }}" alt=""></span>
+            </div>
+            <div class="content">
+                <p>{{ article.content | raw }}</p>
+                <p><a href="{{ path('post', {'id': article.id}) }}" class="btn btn-primary">read more</a></p>
+            </div>
+                
+            
         </article>
     {% endfor %}
 </section>

@@ -2,10 +2,29 @@
 
 {% block title %}Posts{% endblock %}
 
+{# ... #}
+{# this tag only applies to the forms defined in this template #}
+{% form_theme formPost 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 
 <h1>Nouvel article</h1>
 
-{{ form(formPost) }}
+{{ form_start(formPost) }}
+
+{# {{ form_error(formPost.title)}} #}
+{{ form_row(formPost.title, {'attr': {'placeholder': "Titre de l'article"}}) }}
+{{ form_row(formPost.content, {'attr': {'placeholder': "Contenu de l'article"}}) }}
+{{ form_row(formPost.image, {'attr': {'placeholder': "URL de l'image"}}) }}
+
+<button type="submit" class="btn btn-success">
+
+    {% if editMode %}
+        Enregistrer
+    {% else %}
+    Ajouter article
+    {% endif %}
+
+</button>
+{{ form_end(formPost) }}
 
 {% endblock %}
