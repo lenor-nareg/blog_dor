@@ -11,14 +11,14 @@
         <article class="articles col-4 shadow-sm mb-2" style="background:#DBDBE4;">
             <h2>{{ article.title }}</h2>
             <div class="metadata">
-                <p>Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt |  date('H:i') }} dans a categorie : 5 etapes</p>
+                <p>Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt |  date('H:i') }} dans a categorie : Monter son home studio en 5 étapes</p>
             </div>
             <div class="content border  d-flex flex-wrap align-content-center">
                 <img src="{{ article.image }}" alt="" class="rounded-circle mx-auto">
             </div>
             <div class="content">
                 <p class="text-center">{{ article.content | raw | capitalize}}</p>
-                <p ><a href="{{ path('post', {'id': article.id}) }}" class="btn btn-primary">read more</a></p>
+                <p ><a href="{{ path('post', {'id': article.id}) }}" class="btn btn-primary">Lire plus</a></p>
             </div>
                 
             
