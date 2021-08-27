@@ -13,13 +13,14 @@
 
 {# {{ form_error(formPost.title)}} #}
 {{ form_row(formPost.title, {'attr': {'placeholder': "Titre de l'article"}}) }}
+{{ form_row(formPost.category) }}
 {{ form_row(formPost.content, {'attr': {'placeholder': "Contenu de l'article"}}) }}
 {{ form_row(formPost.image, {'attr': {'placeholder': "URL de l'image"}}) }}
 
 <button type="submit" class="btn btn-success">
 
     {% if editMode %}
-        Enregistrer
+        Enregistrer les modifications
     {% else %}
     Ajouter article
     {% endif %}
