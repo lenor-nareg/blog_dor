@@ -21,7 +21,7 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, max=255, minMessage="msg trop court")
+     * @Assert\Length(min=5, max=255, minMessage="msg trop court")
      */
     private $title;
 
