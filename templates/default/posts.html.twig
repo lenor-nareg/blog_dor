@@ -9,9 +9,9 @@
 <h1 class="text-center">Liste des articles </h1>
     {% for article in articles %}
         <article class="articles col-4 shadow-sm mb-2" style="background:#DBDBE4;">
-            <h2>{{ article.title }}</h2>
+            <h2>{{ article.title | capitalize }}</h2>
             <div class="metadata">
-                <p>Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt |  date('H:i') }} dans a categorie : {{ article.category.title }}</p>
+                <p>Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt |  date('H:i') }} dans a categorie : {{ article.category.title | upper }}</p>
             </div>
             <div class="content border  d-flex flex-wrap align-content-center">
                 <img src="{{ article.image }}" alt="" class="rounded-circle mx-auto">

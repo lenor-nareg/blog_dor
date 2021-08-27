@@ -5,14 +5,27 @@
 {% block body %}
 
 <article>
-        <h2>{{articleSolo.title}}</h2>
-        <div class="metadata">Ecrit le {{articleSolo.createdAt | date('d/m/Y') }} à {{ articleSolo.createdAt |  date('H:i') }} dans a categorie : Monter son home studio en 5 étapes</div>
-        <div class="content d-flex mt-2">
-            <img src="{{ articleSolo.image }}" alt="" class="">
-            <p class="px-3 d-flex align-items-center"> {{ articleSolo.content | raw | capitalize }}</p>
-            
-        </div>
-    </article>
+    <h2>{{articleSolo.title}}</h2>
+    <div class="metadata">Ecrit le {{articleSolo.createdAt | date('d/m/Y') }} à {{ articleSolo.createdAt |  date('H:i') }} dans a categorie : Monter son home studio en 5 étapes</div>
+    <div class="content d-flex mt-2">
+        <img src="{{ articleSolo.image }}" alt="" class="">
+        <p class="px-3 d-flex align-items-center"> {{ articleSolo.content | raw | capitalize }}</p>
+    </div>
+</article>
 
+<section id="commentaires" class="border">
+    {% for comment in articleSolo.comments %}
+        <div class="comment border">
+            <div class="row">
+                <div class="col-2 border">
+                    {{comment.author}} (<small> {{ comment.createdAt | date('d/m/Y à H:i') }} </small>)
+                </div>
+                <div class="col-4 border">
+                    {{comment.content | raw }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</section>           
 
 {% endblock %}
