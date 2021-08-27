@@ -22,7 +22,10 @@ class DefaultController extends AbstractController
     public function index(): Response
     {
         return $this->render('default/welcome.html.twig');
+        //PAGE DACCUEIL
     }    
+
+///////////////////////////////////////////////////////////////////////////////////
 
     /**
      * @Route("/posts", name="posts")
@@ -36,8 +39,11 @@ class DefaultController extends AbstractController
         return $this->render('default/posts.html.twig', [
             'controller_name' => 'DefaultController',
             'articles' => $articles 
+            //LISTE DES ARTICLES
         ]);
     }
+
+///////////////////////////////////////////////////////////////////////////////////
 
     /**
      * @Route("/post/new", name="post_new")
@@ -71,7 +77,10 @@ class DefaultController extends AbstractController
             'formPost' =>$form->createView(),
             'editMode' => $post->getId() !==null
         ]);
+        //FORMULAIRE CREATION ET MODIFICATIONS D ARTICLES 
     }
+
+///////////////////////////////////////////////////////////////////////////////////
 
     /**
      * @Route("/post/{id}", name="post")
@@ -82,7 +91,7 @@ class DefaultController extends AbstractController
         //$articleSolo = $repo->find($id);
         return $this->render('default/post.html.twig',[
             'articleSolo' => $articleSolo
-        ]);
+        ]);// AFFICHER UN ARTICLE 
     }
 
    
