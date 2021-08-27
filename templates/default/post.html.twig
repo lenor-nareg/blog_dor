@@ -6,7 +6,10 @@
 
 <article>
     <h2>{{articleSolo.title}}</h2>
-    <div class="metadata">Ecrit le {{articleSolo.createdAt | date('d/m/Y') }} à {{ articleSolo.createdAt |  date('H:i') }} dans a categorie : Monter son home studio en 5 étapes</div>
+    <div class="metadata">
+        <p>Ecrit le {{articleSolo.createdAt | date('d/m/Y') }} à {{ articleSolo.createdAt |  date('H:i') }}</p>
+        <p> Dans la categorie :  {{ articleSolo.category.title }}</p>
+    </div>
     <div class="content d-flex mt-2">
         <img src="{{ articleSolo.image }}" alt="" class="">
         <p class="px-3 d-flex align-items-center"> {{ articleSolo.content | raw | capitalize }}</p>
